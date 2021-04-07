@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import "./administrador-tareas.css"
-import ListadoTareas from '../listado-tareas-comp/listado-tareas';
-import CrearTarea from '../crear-tarea-comp/crear-tarea';
+import ListadoTareas from '../../components/listado-tareas-comp/listado-tareas';
 import useTareaApi from '../../Api/useTareaApi';
 
 
 import{
-    Col,
     Form,
-    Row,
-    Alert
+    Alert,
+    Container
 }from "react-bootstrap";
 
 const AdministradorTareas = () => {
 
+    console.log("debug5");
     const tareasApi = useTareaApi();
     const [listaTareas, setListaTareas] = useState([]);
 
@@ -32,23 +31,23 @@ const AdministradorTareas = () => {
             
         }
     }
-    
+    console.log("debug6");
     useEffect(() => {
         getTareas();
     }, []);
     
+    console.log("debug7");
+   
     return (
+        
         <div className="admin">
-            <Form.Group as={Row}>
-                <Col sm={5}>
-                    <CrearTarea></CrearTarea>
-                </Col>
-                <Col sm={7}>
-                   
+            <Container fluid>
+                <h3>Listado de tareas</h3>
+                <br/>
+                <Form.Group >               
                     <ListadoTareas listaTareas = {listaTareas}></ListadoTareas>
-                </Col>
-
-            </Form.Group>
+                </Form.Group>
+            </Container>
         </div>
     )
 }

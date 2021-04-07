@@ -7,7 +7,7 @@ import{
 const ListadoTareas = ({listaTareas}) => {
     return (
        
-        <ListGroup>
+        <ListGroup variant = "flush">
             {listaTareas.map((tarea) =>{
                 return(
                     <ListGroup.Item key = {tarea.id}>

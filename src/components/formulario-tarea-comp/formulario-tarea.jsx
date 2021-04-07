@@ -11,9 +11,10 @@ import {
     Alert
 }from "react-bootstrap";
 
+
 const FormularioTarea = ({tarea, operacion}) => {
 
-
+    
     const [datos, setDatos] = useState(tarea);
     const tareasApi = useTareaApi();
 
@@ -46,7 +47,6 @@ const FormularioTarea = ({tarea, operacion}) => {
             
         }
     }
-
     return (
         
         <Form onSubmit={onSubmit}>
@@ -89,7 +89,6 @@ const FormularioTarea = ({tarea, operacion}) => {
                     >
                     Estado de la tarea
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu>
                     <Dropdown.Item value="no-iniciado">No iniciado</Dropdown.Item>
                     <Dropdown.Item value="iniciado">Iniciado</Dropdown.Item>
