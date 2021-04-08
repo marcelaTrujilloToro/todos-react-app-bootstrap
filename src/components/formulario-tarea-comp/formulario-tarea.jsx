@@ -5,9 +5,7 @@ import useTareaApi from '../../Api/useTareaApi';
 import {
     Form,
     Col,
-    Row,
     Button,
-    Dropdown,
     Alert
 }from "react-bootstrap";
 
@@ -16,6 +14,7 @@ const FormularioTarea = ({tarea, operacion}) => {
 
     
     const [datos, setDatos] = useState(tarea);
+    const [error, setError] = useState('');
     const tareasApi = useTareaApi();
 
     const onCampoChange = (evento) => {
@@ -27,7 +26,10 @@ const FormularioTarea = ({tarea, operacion}) => {
         );
     }
 
-    const onSubmit = async () => {
+    const onSubmit = async (evento) => {
+
+        evento.preventDefault();
+        setError(null);
         try {            
             if(operacion === 'crearTarea'){
                 await tareasApi.post("/tareas", datos);
@@ -39,9 +41,7 @@ const FormularioTarea = ({tarea, operacion}) => {
             }
         }
         catch (err) {
-            <Alert variant={'warning'}>
-                Hubo un error cargando las tareas
-            </Alert>
+            setError('Hubo un error al guardar la tarea');
         }
         finally {
             
@@ -51,57 +51,68 @@ const FormularioTarea = ({tarea, operacion}) => {
         
         <Form onSubmit={onSubmit}>
 
-            <Form.Group as={Row}>
-                <Form.Label column sm={2}>
-                    Titulo
-                </Form.Label>
-                <Col sm={10}>
-                <Form.Control 
-                    name = "nombre"                     
-                    value={datos.nombre}
-                    placeholder="Nombre tarea" 
-                    onChange = {onCampoChange}
-                    />
-                </Col>
-            </Form.Group>
+            <Form.Row >
+               <Form.Group as = {Col}>
+                <Form.Label>Titulo</Form.Label>
+                   
+                    <Form.Control 
+                        name = "nombre"                     
+                        value={datos.nombre}
+                        placeholder="Nombre tarea" 
+                        onChange = {onCampoChange}
+                        />
+                  
+               </Form.Group>
+            </Form.Row >
 
-            <Form.Group as={Row}>
-                <Form.Label column sm={2}>
-                    Duracion
-                </Form.Label>
-                <Col sm={10}>
-                <Form.Control 
-                    name = "duracion"
-                    type = "number"
-                    value={datos.duracion}
-                    placeholder="Duracion en horas" 
-                    onChange = {onCampoChange}
-                    />
-                </Col>
-            </Form.Group>
-
-            <Dropdown>
-                <Dropdown.Toggle
-                    variant="outline-secondary"
-                    name = "estado"
-                    value={datos.estado}
-                    onChange = {onCampoChange}
-                    >
-                    Estado de la tarea
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                    <Dropdown.Item value="no-iniciado">No iniciado</Dropdown.Item>
-                    <Dropdown.Item value="iniciado">Iniciado</Dropdown.Item>
-                    <Dropdown.Item value="terminado">Terminado</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
-            <br/>
+            <Form.Row>
+                <Form.Group as ={Col}>
+                    
+                    <Form.Label>Duracion en horas</Form.Label>
+                    
+                        <Form.Control 
+                            name = "duracion"
+                            type = "number"
+                            value={datos.duracion}
+                            placeholder="Duracion en horas" 
+                            onChange = {onCampoChange}
+                        /> 
+                </Form.Group>
+            
+                <Form.Group as = {Col}>
+                    <Form.Label>Estado</Form.Label>
+                    <Form.Control 
+                            as = "select"
+                            name = "estado"
+                            value={datos.estado}
+                            onChange = {onCampoChange}
+                            >                        
+                            <option value="no-iniciado">No iniciado</option>
+                            <option value="iniciado">Iniciado</option>
+                            <option value="terminado">Terminado</option>
+                                        
+                    </Form.Control>  
+                </Form.Group>
+            </Form.Row>
+           
             <Button 
-                variant="primary"
-                type="submit"                   
+
+            variant="primary"
+            type="submit"                   
             >
-            Guardar Tarea
+            Guardar Tarea         
             </Button>
+
+            <Form.Group>
+                <br/>
+                {error ?
+                    <Alert variant="danger">
+                        {error}
+                    </Alert>
+                    : null
+                }
+            </Form.Group>
+             
         </Form> 
         
     )

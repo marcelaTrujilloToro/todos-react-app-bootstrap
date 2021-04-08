@@ -8,7 +8,7 @@ const Home = () => {
     return (
        <Container fluid>
           
-           <img src="\todo.jpg"/> 
+           <img src="\imagenes\todo.jpg"/> 
           
        </Container>
         

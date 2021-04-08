@@ -12,31 +12,31 @@ import{
 
 const AdministradorTareas = () => {
 
-    console.log("debug5");
+  
     const tareasApi = useTareaApi();
+    const [error, setError] = useState('');
     const [listaTareas, setListaTareas] = useState([]);
 
     const getTareas = async () => {
         try {
             const { data } = await tareasApi.get("/tareas");
             setListaTareas(data);
+            setError(null);
         }
         catch (err) {
-            <Alert variant={'warning'}>
-                Hubo un error cargando las tareas
-            </Alert>;
+            setError('Hubo un error cargando las tareas');
             setListaTareas([]);
         }
         finally {
             
         }
     }
-    console.log("debug6");
+  
     useEffect(() => {
         getTareas();
     }, []);
-    
-    console.log("debug7");
+
+
    
     return (
         
@@ -44,8 +44,14 @@ const AdministradorTareas = () => {
             <Container fluid>
                 <h3>Listado de tareas</h3>
                 <br/>
-                <Form.Group >               
-                    <ListadoTareas listaTareas = {listaTareas}></ListadoTareas>
+                {error ?
+                    <Alert variant="danger">
+                        {error}
+                    </Alert>
+                    : null
+                }             
+                <Form.Group >  
+                <ListadoTareas listaTareas = {listaTareas}></ListadoTareas>
                 </Form.Group>
             </Container>
         </div>

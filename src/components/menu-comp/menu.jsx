@@ -19,8 +19,8 @@ const Menu = () => {
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
                 <Nav.Link as={Link} to="/crear-tarea">Crear tarea</Nav.Link>
                 <Nav.Link as={Link} to="/tareas">Lista tareas</Nav.Link>
-                <Nav.Link as={Link} to="">Editar tarea</Nav.Link>
-                <Nav.Link as={Link} to="">Reportes de tareas</Nav.Link>
+                <Nav.Link as={Link} to="/editar-tareas">Editar tarea</Nav.Link>
+                <Nav.Link as={Link} to="/reporte-tareas">Reportes de tareas</Nav.Link>
                 
             </Nav>            
         </Navbar>
