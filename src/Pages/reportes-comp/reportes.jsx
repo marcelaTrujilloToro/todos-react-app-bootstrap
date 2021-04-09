@@ -45,7 +45,7 @@ const Reportes = () => {
     }
     useEffect(() => {
         getTareas();
-        contarTareasXEstados();
+        
     },[]);
 
     
@@ -75,6 +75,8 @@ const Reportes = () => {
     }
 
     return (
+        <>
+        <h3>Reporte tareas</h3>
         <CardDeck className = "cardDeck">
             <Card border="info"  >
                 <Card.Body>
@@ -126,7 +128,7 @@ const Reportes = () => {
             
           
         </CardDeck>
-        
+        </>
     )
 };
 

@@ -39,6 +39,9 @@ const FormularioTarea = ({tarea, operacion}) => {
                     estado: 'no-iniciado',
                 });
             }
+            else if (operacion === "editarTarea") {
+                await tareasApi.put(`/tareas/${tarea.id}`, datos);
+            }
         }
         catch (err) {
             setError('Hubo un error al guardar la tarea');
@@ -96,11 +99,10 @@ const FormularioTarea = ({tarea, operacion}) => {
             </Form.Row>
            
             <Button 
-
-            variant="primary"
-            type="submit"                   
+                variant="primary"
+                type="submit"                   
             >
-            Guardar Tarea         
+                Guardar Tarea         
             </Button>
 
             <Form.Group>

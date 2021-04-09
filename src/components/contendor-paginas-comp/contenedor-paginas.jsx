@@ -3,12 +3,12 @@ import Home from "../../Pages/Home/Home"
 import AdministradorTareas from '../../Pages/administrador-tareas-comp/administrador-tareas';
 import CrearTarea from '../../Pages/crear-tarea-comp/crear-tarea';
 import Reportes from '../../Pages/reportes-comp/reportes';
+import EditarTarea from '../../Pages/editar-tarea-comp/editar-tarea';
 
 import {
     Switch,
     Route,
   } from "react-router-dom";
-import EditarBorrar from '../../Pages/editar-borrar-comp/editar-borrar';
 
 const ContenedorPaginas = () => {
     return (
@@ -25,8 +25,8 @@ const ContenedorPaginas = () => {
                 <Reportes></Reportes>                
             </Route>
 
-            <Route path="/editar-tareas">
-                <EditarBorrar></EditarBorrar>
+            <Route path="/editar-tarea/:idTarea">
+                <EditarTarea></EditarTarea>
             </Route>
 
             <Route path="/">

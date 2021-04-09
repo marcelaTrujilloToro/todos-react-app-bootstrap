@@ -7,10 +7,10 @@
       "estado": "no-iniciado"
     },
     {
-      "id": 2,
       "nombre": "Instalar Node",
-      "duracion": 1,
-      "estado": "iniciado"
+      "duracion": "1",
+      "estado": "iniciado",
+      "id": 2
     },
     {
       "id": 3,
